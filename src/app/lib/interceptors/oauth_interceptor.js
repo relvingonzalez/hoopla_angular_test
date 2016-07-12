@@ -27,6 +27,7 @@ angular.module('hooplaAngularTest')
         .post(endpoint)
         .success(function (tokenResponse) {
           // Received a token, execute the initial request
+          $cookieStore.put('client_id', Constants.CLIENT_ID);
           $cookieStore.put('access_token', 'BEARER ' + tokenResponse.access_token);
           $cookieStore.put('refresh_token', tokenResponse.refresh_token);
 
@@ -79,6 +80,10 @@ angular.module('hooplaAngularTest')
     };
 
     var requestCallback = function (config) {
+      if ($cookieStore.get('client_id') !== Constants.CLIENT_ID) {
+        $cookieStore.remove('access_token');
+        $cookieStore.remove('refresh_token');
+      }
       $rootScope.auth = $rootScope.auth || {};
       $rootScope.auth.access_token = $rootScope.auth.access_token || '';
 
