@@ -5,11 +5,11 @@
 ////
 
 angular.module('hooplaAngularTest.models')
-  .factory('Metric', function($resource) {
+  .factory('Metric', function($resource, Constants) {
 
     var metric_list_content_type = 'application/vnd.hoopla.metric-list+json';
 
-    return $resource('https://api.hoopla.net/metrics/:metricId', {metricId:'@id'}, {
+    return $resource(Constants.API_PREFIX + '/metrics/:metricId', {metricId:'@id'}, {
       'index':  {
         method : 'GET',
         isArray : true,

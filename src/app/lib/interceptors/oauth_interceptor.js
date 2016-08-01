@@ -18,9 +18,9 @@ angular.module('hooplaAngularTest')
       // If there's already a refresh token available, use it
       // Otherwise, authenticate the client for the first time
       if (refresh_token) {
-        endpoint = 'https://api.hoopla.net/oauth2/token?grant_type=refresh_token&client_secret=' + encodeURIComponent(Constants.CLIENT_SECRET) + '&client_id=' + encodeURIComponent(Constants.CLIENT_ID) + '&refresh_token=' + encodeURIComponent(refresh_token);
+        endpoint = Constants.API_PREFIX + '/oauth2/token?grant_type=refresh_token&client_secret=' + encodeURIComponent(Constants.CLIENT_SECRET) + '&client_id=' + encodeURIComponent(Constants.CLIENT_ID) + '&refresh_token=' + encodeURIComponent(refresh_token);
       } else {
-        endpoint = 'https://api.hoopla.net/oauth2/token?client_secret=' + encodeURIComponent(Constants.CLIENT_SECRET) + '&client_id=' + encodeURIComponent(Constants.CLIENT_ID) + '&grant_type=client_credential';
+        endpoint = Constants.API_PREFIX + '/oauth2/token?client_secret=' + encodeURIComponent(Constants.CLIENT_SECRET) + '&client_id=' + encodeURIComponent(Constants.CLIENT_ID) + '&grant_type=client_credential';
       }
 
       $injector.get('$http')
@@ -28,7 +28,7 @@ angular.module('hooplaAngularTest')
         .success(function (tokenResponse) {
           // Received a token, execute the initial request
           $cookieStore.put('client_id', Constants.CLIENT_ID);
-          $cookieStore.put('access_token', 'BEARER ' + tokenResponse.access_token);
+          $cookieStore.put('access_token', 'Bearer ' + tokenResponse.access_token);
           $cookieStore.put('refresh_token', tokenResponse.refresh_token);
 
           response.config.headers = response.config.headers || {};
