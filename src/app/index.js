@@ -6,7 +6,7 @@ angular.module('hooplaAngularTest', ['hooplaAngularTest.models','ngAnimate', 'ng
     // visit https://app.hoopla.net/configuration/settings to provision a Client ID and Secret.
     'CLIENT_ID'     : 'CHANGEME',
     'CLIENT_SECRET' : 'CHANGEME',
-    'API_PREFIX'    : 'http://api.hoopla.net'
+    'API_PREFIX'    : 'https://api.hoopla.net'
   })
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
