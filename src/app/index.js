@@ -11,10 +11,10 @@ angular.module('hooplaAngularTest', ['hooplaAngularTest.models','ngAnimate', 'ng
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $stateProvider
-      .state('home', {
+      .state('metrics', {
         url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'app/views/metrics.html',
+        controller: 'MetricsCtrl'
       });
 
     $urlRouterProvider.otherwise('/');
