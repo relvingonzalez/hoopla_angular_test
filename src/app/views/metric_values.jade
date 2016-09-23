@@ -1,0 +1,10 @@
+.row
+  .col-xs-12
+    a(ui-sref='metrics') <-- Back
+    h1 {{ metric.name }}
+    h2 Values
+    ul
+      li(ng-repeat='val in values')
+        | {{ users[val.owner.href].email }}
+        input(ng-model='val.value', type='number')
+        button(ng-click='updateValue(val)') Save

@@ -1,0 +1,5 @@
+.row
+  .col-xs-12
+    ul
+      li(ng-repeat='metric in metrics')
+        a(ui-sref='metric_values({id: $index})') {{ metric.name }}
