@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hooplaAngularTest')
-  .controller('MetricValuesCtrl', function ($scope, Metric, $stateParams, User) {
+  .controller('MetricValuesCtrl', function ($scope, $stateParams, Metric, User) {
     // Function used by the UI to update a metric value
     $scope.updateValue = function(val) {
       Metric.updateValue(val).then(
