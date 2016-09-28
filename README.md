@@ -4,9 +4,9 @@ This is a sample Angular project that you can use as the basis for your Hoopla i
 
 Your task is to make a web app that interacts with the Hoopla API in order to display a list of Metrics and allow values to be changed.
 
-This app should start by fetching and displaying the list of configured metrics. Clicking on an item in the metrics list should take you to a page where metric values are listed for all the users in the organization (even if the user does not have a value set). Clicking a user row should enable the metric value to be edited. There should be a mechanism to save the value or cancel. After the value is saved, the user list should be redisplayed, showing the updated value. There should be a way to return to the metric list.
-
 The code around OAuth token handling is already done for you, as is a first basic model, controller, and view to fetch and display the list of metrics.
+
+When you are finished, this app should start by fetching and displaying the list of configured metrics. Clicking on an item in the metrics list should take you to a page where metric values are listed for all the users in the organization (even if the user does not have a value set). Clicking a user row should enable the metric value to be edited. There should be a mechanism to save the value or cancel. After the value is saved, the user list should be redisplayed, showing the updated value. There should be a way to return to the metric list.
 
 A functioning app is a requirement, but you can get style points for an app that really works well from a UX perspective, has good test coverage, and is generally easy for another programmer to understand.
 
@@ -20,7 +20,7 @@ A functioning app is a requirement, but you can get style points for an app that
 ### Now to the code...
 1. Fork this repo and clone it onto your local machine.
 1. Edit the file src/app/index.js and fill in your Client ID and Secret values.
-1. Install node.js (https://nodejs.org/)
+1. Install node.js (https://nodejs.org/). This project has been tested with v0.10.35.
 1. Run `npm install`
 1. Run `bower install`
 1. Run `gulp serve`
