@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hooplaAngularTest.models', ['ngResource']);
-angular.module('hooplaAngularTest', ['hooplaAngularTest.models','ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap'])
+angular.module('hooplaAngularTest', ['hooplaAngularTest.models','ngAnimate', 'LocalStorageModule', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap'])
   .constant('Constants', {
     // visit https://app.hoopla.net/configuration/settings to provision a Client ID and Secret.
     'CLIENT_ID'     : 'CHANGEME',

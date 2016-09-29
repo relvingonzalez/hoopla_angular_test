@@ -7,13 +7,13 @@
 // redirect user to root with alert if they get a 403
 
 angular.module('hooplaAngularTest')
-  .factory('oauthInterceptor', function($rootScope, $injector, $q, $cookieStore, Constants) {
+  .factory('oauthInterceptor', function($rootScope, $injector, $q, localStorageService, Constants) {
     var getAuthToken = function (response) {
       var deferred = $q.defer();
 
       var endpoint = '';
 
-      var refresh_token = $cookieStore.get('refresh_token');
+      var refresh_token = localStorageService.get('refresh_token');
 
       // If there's already a refresh token available, use it
       // Otherwise, authenticate the client for the first time
@@ -27,12 +27,12 @@ angular.module('hooplaAngularTest')
         .post(endpoint)
         .success(function (tokenResponse) {
           // Received a token, execute the initial request
-          $cookieStore.put('client_id', Constants.CLIENT_ID);
-          $cookieStore.put('access_token', 'Bearer ' + tokenResponse.access_token);
-          $cookieStore.put('refresh_token', tokenResponse.refresh_token);
+          localStorageService.set('client_id', Constants.CLIENT_ID);
+          localStorageService.set('access_token', 'Bearer ' + tokenResponse.access_token);
+          localStorageService.set('refresh_token', tokenResponse.refresh_token);
 
           response.config.headers = response.config.headers || {};
-          response.config.headers.Authorization = $cookieStore.get('access_token');
+          response.config.headers.Authorization = localStorageService.get('access_token');
 
           // Execute original request
           $injector.get('$http')(response.config).then(function (postAuthResponse) {
@@ -53,7 +53,7 @@ angular.module('hooplaAngularTest')
 
       var newAuthToken = response.headers('Authorization');
       if (newAuthToken) {
-        $cookieStore.put('access_token', newAuthToken);
+        localStorageService.set('access_token', newAuthToken);
       }
 
       return response;
@@ -80,15 +80,15 @@ angular.module('hooplaAngularTest')
     };
 
     var requestCallback = function (config) {
-      if ($cookieStore.get('client_id') !== Constants.CLIENT_ID) {
-        $cookieStore.remove('access_token');
-        $cookieStore.remove('refresh_token');
+      if (localStorageService.get('client_id') !== Constants.CLIENT_ID) {
+        localStorageService.remove('access_token');
+        localStorageService.remove('refresh_token');
       }
       $rootScope.auth = $rootScope.auth || {};
       $rootScope.auth.access_token = $rootScope.auth.access_token || '';
 
       config.headers = config.headers || {};
-      config.headers.Authorization = $cookieStore.get('access_token');
+      config.headers.Authorization = localStorageService.get('access_token');
 
       return config;
     };
