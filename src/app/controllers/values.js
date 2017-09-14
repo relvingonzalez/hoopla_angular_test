@@ -1,5 +1,6 @@
 /**
  * Created by Relvin on 9/13/2017.
+ * Controller for the values view
  */
 (function () {
   'use strict';
@@ -18,7 +19,7 @@
           },function errorWhileSaving(response){console.log('There was an error while saving the value', response)})
       };
 
-      vm.toggleEdit = function(index)
+      vm.edit = function(index)
       {
         var value = vm.values[index];
         if(!value.edit)
