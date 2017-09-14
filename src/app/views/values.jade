@@ -1,0 +1,23 @@
+.row
+  .col-xs-12
+    .h2 {{ValuesCtrl.metric.name}}
+.row
+  .col-xs-12
+    a.btn.btn-primary.pull-left(ui-sref="metrics") << Go Back to Metrics
+.row
+  .col-xs-12
+    table.table.table-hover
+      thead
+        tr
+          th User
+          th Value
+      tbody
+        tr(ng-repeat='value in ValuesCtrl.values' ng-click="ValuesCtrl.toggleEdit($index)")
+          td {{value.first_name + ' '+ value.last_name}}
+          td
+            span(ng-show="!value.edit") {{value.value.value}}
+            div(ng-show="value.edit" )
+              input.form-control(type="number" ng-model="value.value.value")
+              div.btn-group.pull-right.edit-margin
+                button.btn.btn-success(type="button" ng-click="ValuesCtrl.save(value)") Save
+                button.btn.btn-danger(type="button" ng-click="ValuesCtrl.cancelEdit($index,$event)")  Cancel

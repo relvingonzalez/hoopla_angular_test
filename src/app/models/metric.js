@@ -34,6 +34,21 @@ angular.module('hooplaAngularTest.models')
             return $q.reject(response);
           }
         );
+      },
+      get: function values(url){
+        return $http({
+          method: 'GET',
+          url:url,
+          cache:true
+        })
+      },
+      editValue: function edit(url, value){
+        return $http({
+          method:'POST',
+          url:url,
+          data:value
+        })
+
       }
     };
   });

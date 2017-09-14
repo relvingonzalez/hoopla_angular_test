@@ -1,4 +1,5 @@
 .row
   .col-xs-12
     ul
-      li(ng-repeat='metric in metrics') {{ metric.name }}
+      li(ng-repeat='metric in MetricsCtrl.metrics')
+        a(ui-sref ="values({metricUrl:metric.href})" ) {{ metric.name }}
